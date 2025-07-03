@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mas Comunes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      height: 100vh; width: 100vw;
+      background-image: url('ima2.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      display: flex; flex-direction: column;
+      align-items: center;
+    }
+    header {
+      padding: 20px; text-align: center;
+      font-size: 2rem;
+    }
+    .main {
+      flex: 1;
+      display: flex; align-items: flex-start;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+    .controls {
+      list-style: none; padding: 0;
+      margin: 0;
+    }
+    .controls li {
+      margin: 10px 0;
+    }
+    .controls label {
+      font-size: 1.2rem; cursor: pointer;
+      color: rgb(19, 18, 18); text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+    .image-box {
+      max-width: 320px;
+      text-align: center;
+    }
+    .image-box img {
+      display: none; max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+      margin-bottom: 10px;
+    }
+    .description {
+      font-size: 1rem;
+      color: #222;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+      min-height: 40px; /* espacio reservado para descripción */
+    }
+    .footer {
+      padding: 20px;
+    }
+    .footer button {
+      padding: 10px 20px; font-size: 16px;
+      background: #d074e7; color: white;
+      border: none; border-radius: 5px;
+      cursor: pointer;
+    }
+    .footer button:hover {
+      background: #4e709c;
+    }
+  </style>
+</head>
+<body>
+  <header>Mas Comunes</header>
+
+  <div class="main">
+    <ul class="controls">
+      <li><label><input type="radio" name="flor" value="girasol" onclick="show('girasol')"> Girasol</label></li>
+      <li><label><input type="radio" name="flor" value="nube" onclick="show('nube')"> Nube</label></li>
+      <li><label><input type="radio" name="flor" value="tulipan" onclick="show('tulipan')"> Tulipán</label></li>
+    </ul>
+
+    <div class="image-box">
+      <img id="girasol" src="imag1.jpg" alt="Girasol">
+      <img id="nube" src="imag2.jpg" alt="Nube">
+      <img id="tulipan" src="imag3.jpg" alt="Tulipán">
+      <div class="description" id="desc"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button onclick="window.history.back()">Regresar</button>
+  </div>
+
+  <script>
+    const descriptions = {
+      girasol: "El girasol es una planta con flores grandes y amarillas que giran hacia el sol.",
+      nube: "Las nubes son masas visibles de gotas de agua suspendidas en la atmósfera.",
+      tulipan: "El tulipán es una flor bulbosa, muy popular por su variedad de colores y formas."
+    };
+
+    function show(id) {
+      document.querySelectorAll('.image-box img').forEach(img => {
+        img.style.display = (img.id === id) ? 'block' : 'none';
+      });
+      const descDiv = document.getElementById('desc');
+      descDiv.textContent = descriptions[id] || '';
+    }
+  </script>
+</body>
+</html>

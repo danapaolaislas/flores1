@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Recomendaciones</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f4a5f7; /* Fondo suave */
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    img {
+      max-width: 200px;
+      margin-bottom: 15px;
+    }
+    textarea {
+      width: 100%;
+      max-width: 400px;
+      height: 100px;
+      margin-bottom: 10px;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #resultado {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      min-height: 40px;
+      background-color: #ffffff;
+      max-width: 400px;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 4px;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Recomendaciones</h1>
+
+  <!-- Imagen centrada -->
+  <img src="imagen2.jpg" alt="Imagen de recomendación">
+
+  <!-- Área de comentario centrada dentro del layout -->
+  <textarea id="comentario" placeholder="Escribe aquí tu recomendación..."></textarea><br>
+
+  <!-- Botones centrados -->
+  <div>
+    <button id="enviar">Enviar</button>
+    <button id="ver">Ver lo enviado</button>
+  </div>
+
+  <!-- Donde se mostrará el texto enviado -->
+  <div id="resultado"></div>
+
+  <script>
+    const textarea = document.getElementById('comentario');
+    const resultado = document.getElementById('resultado');
+    let enviado = ''; // variable para almacenar el comentario enviado
+
+    document.getElementById('enviar').addEventListener('click', () => {
+      enviado = textarea.value.trim();
+      if (enviado === '') {
+        alert('No has escrito nada para enviar.');
+      } else {
+        alert('Texto enviado correctamente.');
+        textarea.value = '';
+      }
+      resultado.textContent = '';
+    });
+
+    document.getElementById('ver').addEventListener('click', () => {
+      resultado.textContent = enviado === '' ? 'No hay texto enviado aún.' : enviado;
+    });
+  </script>
+
+</body>
+</html>

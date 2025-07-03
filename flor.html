@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Flores</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #e9ccaf;
+    }
+    header {
+      background: #e08290; color: rgb(36, 5, 43);
+      padding: 20px; text-align: center;
+    }
+    .container {
+      display: flex; flex-wrap: wrap;
+      padding: 20px; justify-content: center;
+      align-items: center;
+    }
+    .buttons {
+      display: flex; flex-direction: column;
+      gap: 15px; margin-right: 40px;
+    }
+    .buttons button {
+      padding: 12px 24px; font-size: 16px;
+      background: #a04b75; color: rgb(253, 238, 230);
+      border: none; border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .buttons button:hover {
+      background: #16040e;
+    }
+    .image-container img {
+      max-width: 300px; height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(194,85,85,0.39);
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column; align-items: center;
+      }
+      .buttons {
+        margin-right: 0; margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header><h1>Flores</h1></header>
+  <div class="container">
+    <div class="buttons">
+      <button onclick="window.location.href='flores.html'">Descripcion</button>
+      <button onclick="window.location.href='reco.html'">Recomendaciones</button>
+      <button onclick="window.location.href='vent.html'">Ventas</button>
+      <button onclick="window.location.href='vid.html'">video</button>
+    </div>
+    <div class="image-container">
+      <img src="imagen1.jpeg" alt="Imagen de flores">
+    </div>
+  </div>
+</body>
+</html>

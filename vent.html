@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Venta</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #e29393; padding: 20px; }
+    header { font-size: 28px; color: #e20909; margin-bottom: 20px; text-align: center; }
+    .top-bar { text-align: right; margin-bottom: 20px; }
+    .top-bar button, .bottom-bar button {
+      padding: 10px 20px; font-size: 16px;
+      background: #8502d1; color: white;
+      border: none; border-radius: 4px; cursor: pointer;
+    }
+    .top-bar button:hover, .bottom-bar button:hover { background: #7bcaf8; }
+    .products { display: flex; justify-content: space-between; gap: 20px; }
+    .product {
+      background: white; padding: 15px; border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center; width: 30%;
+    }
+    .img-container {
+      width: 200px; height: 200px; margin: 0 auto 10px;
+      overflow: hidden;
+    }
+    .img-container img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .product-name { font-size: 18px; margin: 10px 0; }
+    .product-price { font-size: 16px; color: #444; margin-bottom: 10px; }
+    .product input[type="number"] {
+      width: 60px; padding: 5px; margin-bottom: 10px;
+    }
+    .product button {
+      padding: 8px 16px; font-size: 14px;
+      background: #75cc79; color: #130e0e;
+      border: none; border-radius: 4px; cursor: pointer;
+    }
+    .product button:hover { background: #1e2c1f; }
+    .total-info {
+      margin-top: 10px; font-size: 14px; color: #333; text-align: left;
+      display: none;
+    }
+    .bottom-bar { text-align: center; margin-top: 30px; }
+    .bottom-bar button {
+      background: #d32f2f; color: white; border: none; 
+      padding: 10px 20px; border-radius: 4px; cursor: pointer;
+    }
+    .bottom-bar button:hover { background: #c62828; }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none; margin: 0;
+    }
+    input[type="number"] { -moz-appearance: textfield; }
+  </style>
+</head>
+<body>
+  <header>Venta</header>
+  <div class="top-bar">
+    <button onclick="window.location.href='detalle.html'">Siguiente</button>
+  </div>
+
+  <div class="products">
+    <!-- Producto 1 -->
+    <div class="product" data-price="25.00" data-discount="5">
+      <div class="img-container"><img src="gardenia.jpeg" alt="Gardenia"></div>
+      <div class="product-name">Gardenia</div>
+      <div class="product-price">$25.00</div>
+      <input type="number" min="0" value="0">
+      <button onclick="buyProduct(this)">Comprar</button>
+      <div class="total-info">
+        <div class="quantity">Cantidad: 0</div>
+        <div class="discount">Descuento (5 %): $0.00</div>
+        <div class="total">Total a pagar: $0.00</div>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="product" data-price="40.00" data-discount="10">
+      <div class="img-container"><img src="rosas.jpg" alt="Rosas"></div>
+      <div class="product-name">Rosas</div>
+      <div class="product-price">$40.00</div>
+      <input type="number" min="0" value="0">
+      <button onclick="buyProduct(this)">Comprar</button>
+      <div class="total-info">
+        <div class="quantity">Cantidad: 0</div>
+        <div class="discount">Descuento (10 %): $0.00</div>
+        <div class="total">Total a pagar: $0.00</div>
+      </div>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="product" data-price="15.00" data-discount="15">
+      <div class="img-container"><img src="tulipan.jpg" alt="Tulipán"></div>
+      <div class="product-name">Tulipán</div>
+      <div class="product-price">$15.00</div>
+      <input type="number" min="0" value="0">
+      <button onclick="buyProduct(this)">Comprar</button>
+      <div class="total-info">
+        <div class="quantity">Cantidad: 0</div>
+        <div class="discount">Descuento (15 %): $0.00</div>
+        <div class="total">Total a pagar: $0.00</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <button onclick="window.location.href='flor.html'">Regresar</button>
+  </div>
+
+  <script>
+    function buyProduct(btn) {
+      // Oculta toda info previa
+      document.querySelectorAll('.total-info').forEach(el => el.style.display = 'none');
+
+      const product = btn.closest('.product');
+      const price = parseFloat(product.dataset.price);
+      const disc = parseFloat(product.dataset.discount);
+      const qtyInput = product.querySelector('input[type="number"]');
+      const qty = parseInt(qtyInput.value, 10) || 0;
+
+      if (qty <= 0) {
+        alert('Selecciona al menos una unidad.');
+        return;
+      }
+
+      const discountAmt = price * qty * disc / 100;
+      const total = price * qty - discountAmt;
+
+      product.querySelector('.quantity').textContent = `Cantidad: ${qty}`;
+      product.querySelector('.discount').textContent = `Descuento (${disc}%): $${discountAmt.toFixed(2)}`;
+      product.querySelector('.total').textContent = `Total a pagar: $${total.toFixed(2)}`;
+      product.querySelector('.total-info').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
